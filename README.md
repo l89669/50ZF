@@ -1,6 +1,7 @@
 # 50ZF 武林支付
 武林支付系统(ThinkPHP3.2.2内核,仿MCRMB)
 
+使用GPL3.0开源协议
 
 ##说在前面
 >这是我最近抽空写的一个作品,是当做练手的.
@@ -30,7 +31,7 @@
 7. 在Ucenter创建应用程序,复制配置文件到/api/UcConfig.inc.php
 8. 测试
 
-######友情提示,本程序默认使用的支付模块是龙梦云支付.
-######如有需要,可自行另外开发.
-
+#####友情提示,本程序默认使用的支付模块是龙梦云支付.
+#####如有需要,可自行另外开发.
+#####正式运营前,请在index.php中关闭debug模式,并且清空Runtime缓存
 ![](https://raw.githubusercontent.com/DDMCloud/50ZF/master/DDMCloud.jpg)
