@@ -12,6 +12,7 @@
 
 >本程序有完整的分成体系,支持为单用户设置特殊分成.
 >也有提现体系和程序日志.
+>支持直接上传到SAE使用,但要开启Memcached
 
 ##安装方法
 1. 安装网页服务器,配置PHP运行环境(支不支持PHP7我没有测试)
@@ -23,5 +24,7 @@
 7. 在Ucenter创建应用程序,复制配置文件到/api/UcConfig.inc.php
 8. 测试
 
+######友情提示,本程序默认使用的支付模块是龙梦云支付.
+######如有需要,可自行另外开发.
 
-![]()
+![](https://raw.githubusercontent.com/DDMCloud/50ZF/master/DDMCloud.jpg)
