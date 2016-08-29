@@ -1,0 +1,32 @@
+<php>
+    $username=I('session.uc_username');
+    $mU=D('user');
+    $mU->updateGain($username);
+    $user=$mU->loadUser($username);
+</php>
+<body style="font-family:'微软雅黑';">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#"><b><i class="fa fa-shield"></i>{:C('WebSiteName')}</b></a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li class="[main]"><a href="{:U('user/main')}">首页</a></li>
+                            <li class="[editprofile]"><a href="{:U('user/editprofile')}">修改资料</a></li>
+                            <li class=""><a href="{:C('url_changepassword')}" target="_blank">修改密码</a></li>
+                            <li class=""><a href="{:C('url_bbs_discuzz')}" target="_blank">交流平台</a></li>
+                            <!--<li><a href="" target="_blank">需要帮助</a></li>
+                            <li><a href="" target="_blank"><b>马上充值</b></a></li>-->
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="">@{:session('uc_username')}(高级权限√)</a></li>
+                            <li><a href="">余额：<php>echo $user['money'];</php>(<php>echo $user['gain'];</php>/<php>echo $user['gain_last'];</php>)</a></li>
+                            <li><a href="{:U('user/logout')}">退出登录</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>

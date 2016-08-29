@@ -1,0 +1,59 @@
+<include file="Public/header" title="web_index_result_title"/>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div><img src='{$server.logourl|default="/Public/img/logo.png"}' style="max-height: 130px;"></div>
+                <nav class="navbar navbar-default" role="navigation">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand">
+                            <b><i class="icon-beaker"></i>{$server.name}</b></a>
+                    </div>
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="">结果查询</a></li>
+                            <li><a href="{:U('user/main')}">进入平台</a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="{:U('server/applyserver')}">服主申请充值平台?</a></li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-8">
+                <legend> * 以下是您提交的充值卡处理结果，若状态为处理中，请稍后自行<a href="javascript:location.reload()">[刷新]</a>。</legend>
+                <dl class="dl-horizontal">
+                    <dt>处理结果</dt>
+                    <dd>{$order.status}</dd>
+                    <dt>提交面额</dt>
+                    <dd>{$order.paymoney}</dd>
+                    <dt>支付方式</dt>
+                    <dd>{$paydata.payname}</dd>
+                    <dt>提交时间</dt>
+                    <dd>{:date('Y-m-d H:i:s',$order['time']);}</dd>
+                    <dt>服务器ID</dt>
+                    <dd>{$server.id}</dd>
+                    <dt>服务器玩家名</dt>
+                    <dd>{$order.player}</dd>
+                    <dt>充值定单号</dt>
+                    <dd>{$order.order}    <em>←建议保存</em></dd>
+                </dl>
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                    <button type="submit" class="btn btn-default col-xs-12 col-sm-12 col-md-12" id="submit" onclick="javascript:window.location.href = '<php>echo U("serverpay/index?id=" . $server['id']);</php>';">返回充值</button>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-4 ">
+                <div class="well">
+                    <h3>温馨提示</h3>
+                    <p>您不必本充值平台，建议您妥善保存左侧中的充值单ID以及密码，或将本页收藏+截图以留作充值凭据。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

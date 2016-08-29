@@ -1,0 +1,46 @@
+<include file="Public/header" title="web_index_moneyaccount_title"/>
+<include file="User/top" moneyaccount='active'/>
+<include file="User/left" moneyaccount='active'/>
+<div class="col-xs-12 col-sm-9">
+    <div style="font-size: 40px;">提现账户管理</div>
+    <form method="post" id="EditMoneyAccount" class="form-horizontal bv-form" action="{:U('user/moneyaccount?submit=edit')}" novalidate="novalidate">
+        <input type="hidden" name="submit" class="form-control" value="edit">
+        <input type="hidden" name="id" class="form-control" value="{:I('id')}">
+        <input type="hidden" name="from" class="form-control" value="1">
+        <legend>编辑现账户信息</legend>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">用户名</label>
+            <div class="col-sm-6">
+                <input type="text" name="username" class="form-control" value="{:session('uc_username')}" disabled="disabled">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="type" class="col-sm-2 control-label">类型</label>
+            <div class="col-sm-10">
+                <select class="form-control" name='type'>
+                    <volist name="moneyaccounttype" id="vo" key="k" ><!--循环输出-->
+                        <option value='{$vo.type}'>{$vo.name}</option>
+                    </volist>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">户名</label>
+            <div class="col-sm-6">
+                <input type="text" name="realname" class="form-control" value="{$account[realname]}">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">账号</label>
+            <div class="col-sm-6">
+                <input type="text" name="account" class="form-control" value="{$account[account]}">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <input type="submit" class="btn btn-primary" value='确定'>
+            </div>
+        </div>
+    </form>
+</div>
+<include file="User/footer" title="web_index_register_title"/>

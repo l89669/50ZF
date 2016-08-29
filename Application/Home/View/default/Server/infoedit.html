@@ -1,0 +1,68 @@
+<include file="Public/header" title="web_index_serverinfoedit_title"/>
+<include file="User/top" servers='active'/>
+<include file="User/left" servers='active'/>
+<div class="col-xs-12 col-sm-9">
+    <div style="font-size: 40px;">服务器设置</div>
+    <script type="text/javascript" src="/Public/js/bootstrapValidator.js"></script>
+    <form method="post" id="ApplyServer" class="form-horizontal bv-form" action="{:U('doserver/infoedit')}" novalidate="novalidate"><button type="submit" class="bv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
+        <fieldset>
+            <legend>修改服务器信息,请勿频繁改动以免引起玩家反感</legend>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">服务器编号</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" value="{$server.id}" disabled="">
+                    <input type="hidden" class="form-control" name="id" value="{$server.id}">
+                </div>
+                <span class="help-block col-sm-4">固定</span>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">服务器名称</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name='name' value="{$server.name}">
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label for="shost" class="col-sm-2 control-label">服务器IP</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="shost" value="{$server.ip}" name="ip" data-bv-field="shost"><i class="form-control-feedback" data-bv-icon-for="shost" style="display: none;"></i>
+                    <small class="help-block" data-bv-validator="notEmpty" data-bv-for="shost" data-bv-result="NOT_VALIDATED" style="display: none;">服务器连接地址或IP必须填写噢!</small><small class="help-block" data-bv-validator="regexp" data-bv-for="shost" data-bv-result="NOT_VALIDATED" style="display: none;">服务器连接地址格式有误!</small><small class="help-block" data-bv-validator="remote" data-bv-for="shost" data-bv-result="NOT_VALIDATED" style="display: none;">该服务器地址已经被其他服务器设置!</small></div>
+                <span class="help-block col-sm-4">您服务器的连接地址</span>
+            </div>
+            <div class="form-group has-feedback">
+                <label for="slogo" class="col-sm-2 control-label">LOGO地址</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="slogo" value="{$server.logourl}" name="logourl" placeholder="充值界面上的LOGO图片地址" data-bv-field="slogo"><i class="form-control-feedback" data-bv-icon-for="slogo" style="display: none;"></i>
+                    <small class="help-block" data-bv-validator="stringLength" data-bv-for="slogo" data-bv-result="NOT_VALIDATED" style="display: none;">过长或过短</small></div>
+                <span class="help-block col-sm-4">充值界面上的LOGO图片地址</span>
+            </div>
+            <div class="form-group has-feedback">
+                <label for="surl" class="col-sm-2 control-label">官网超链接</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="surl" value="{$server.wwwurl}" name="wwwurl" placeholder="充值界面导航栏的服务器官网链接" data-bv-field="surl"><i class="form-control-feedback" data-bv-icon-for="surl" style="display: none;"></i>
+                    <small class="help-block" data-bv-validator="stringLength" data-bv-for="surl" data-bv-result="NOT_VALIDATED" style="display: none;">过长或过短</small></div>
+                <span class="help-block col-sm-4">充值界面导航栏的服务器官网链接</span>
+            </div>
+            <div class="form-group has-feedback">
+                <label for="svipurl" class="col-sm-2 control-label">VIP介绍超链接</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="svipurl" value="{$server.url}" name="url" placeholder="充值界面导航栏的VIP介绍链接" data-bv-field="svipurl"><i class="form-control-feedback" data-bv-icon-for="svipurl" style="display: none;"></i>
+                    <small class="help-block" data-bv-validator="stringLength" data-bv-for="svipurl" data-bv-result="NOT_VALIDATED" style="display: none;">过长或过短</small></div>
+                <span class="help-block col-sm-4">充值界面导航栏的VIP介绍链接</span>
+            </div>
+            <div class="form-group has-feedback">
+                <label class="col-sm-2 control-label" for="stext">服务器简介</label>
+                <div class="col-sm-6">
+                    <textarea class="form-control " id="stext" rows="4" placeholder="一段简洁而真诚的服务器介绍语可以吸引更多玩家哦!" name="info" data-bv-field="stext">{$server.info}</textarea><i class="form-control-feedback" data-bv-icon-for="stext" style="display: none;"></i>
+                    <small class="help-block" data-bv-validator="notEmpty" data-bv-for="stext" data-bv-result="NOT_VALIDATED" style="display: none;">服务器简介必须填写!</small><small class="help-block" data-bv-validator="stringLength" data-bv-for="stext" data-bv-result="NOT_VALIDATED" style="display: none;">请输入一段5到400个字的服务器简介!!</small></div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary">修改</button>
+                    <button class="btn btn-default" type="reset">重新填写</button>
+                    <button onclick="window.location.href='{:U('server/servers')}';" class="btn btn-default" type="button">返回</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+</div>

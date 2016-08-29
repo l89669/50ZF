@@ -1,0 +1,49 @@
+<include file="Public/header" title="web_index_applycashrecord_title"/>
+<include file="User/top" applycashrecord='active'/>
+<include file="User/left" applycashrecord='active'/>
+<div class="col-xs-12 col-sm-9">
+    <div style="font-size: 40px;">提现记录</div>
+
+    <table class="table table-bordered table-striped table-hover" style="margin-bottom: 0px;">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>提现时间</th>
+                <th>提现金额</th>
+                <th>提现账户编号</th>
+                <th>操作IP</th>
+                <th>状态</th>
+            </tr>
+        </thead>
+        <tbody>
+        <volist name="record" id="vo" key="k" ><!--循环输出-->
+            <tr>
+                <th scope="row">{$vo.id}</th>
+                <td>{:date('Y-m-d H:i:s',$vo[time]);}</td>
+                <td><span class="badge progress-bar-success">{$vo.money}</span></td>
+                <td>{$vo.moneyaccount}</td>
+                <td>{$vo.ip}</td>
+                <td>
+            <if condition="($vo.status eq 0)"> 
+                <span style="color: blue; font-weight: bold;">待处理</span>
+                <elseif condition="$vo.status eq 1"/>
+                <span style="color: blue; font-weight: bold;">处理中</span>
+                <elseif condition="$vo.status eq 2"/>
+                <span style="color: green; font-weight: bold;">处理完成</span>
+                <else />
+                未知
+            </if>
+            </td>
+            </tr>
+        </volist>  
+        </tbody>
+
+    </table>
+    <nav>
+        {$page}
+
+    </nav>
+    <a class="toggle-link" href="{:U('user/applycash')}"><i class="icon-plus">
+        </i> 马上提现!
+    </a>
+</div>

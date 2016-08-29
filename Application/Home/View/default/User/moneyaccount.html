@@ -1,0 +1,91 @@
+<include file="Public/header" title="web_index_moneyaccount_title"/>
+<include file="User/top" moneyaccount='active'/>
+<include file="User/left" moneyaccount='active'/>
+<div class="col-xs-12 col-sm-9">
+    <div style="font-size: 40px;">提现账户管理</div>
+    <form method="post" id="EditMoneyAccount" class="form-horizontal bv-form" action="#" novalidate="novalidate">
+        <button type="submit" class="bv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
+        <input type="hidden" name="submit" class="form-control" value="submit">
+        <legend>增加/修改提现账户信息</legend>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">用户名</label>
+            <div class="col-sm-6">
+                <input type="text" name="email" class="form-control" value="{:session('uc_username')}" disabled="disabled">
+            </div>
+        </div>
+        <div class="form-group has-feedback">
+            <label class="col-sm-2 control-label">提现账户列表</label>
+            <div class="col-sm-10">
+                <div class="bs-example" data-example-id="hoverable-table">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>类型</th>
+                                <th>户名</th>
+                                <th>账号</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <volist name="moneyaccount" id="vo" key="k" ><!--循环输出-->
+                            <tr>
+                                <th scope="row">{$vo.id}</th>
+                                <td>{$vo.type}</td>
+                                <td>{$vo.realname}</td>
+                                <td>{$vo.account}</td>
+                                <td><a href="<php>echo U("?submit=edit&id=" . $vo['id'])</php>">编辑</a> / <a href='<php>echo U("?from=1&submit=del&id=" . $vo['id'])</php>'>删除</a></td>
+                            </tr>
+                        </volist>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </form>
+    <legend>增加账户</legend>
+    <form class="form-horizontal bv-form" method="post" id="AddMoneyAccount" action="{:U('?submit=add')}" novalidate="novalidate">
+        <input type="hidden" name="submit" class="form-control" value="add">
+        <input type="hidden" name="from" class="form-control" value="1">
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">真实姓名</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputEmail3" placeholder="填写您账户的户名" name='realname'>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">账户</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputPassword3" placeholder="填写您的提现账户" name='account'>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label">类型</label>
+            <div class="col-sm-10">
+                <select class="form-control" name='type'>
+                    <volist name="moneyaccounttype" id="vo" key="k" ><!--循环输出-->
+                        <option value='{$vo.type}'>{$vo.name}</option>
+                    </volist>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <a href="javascript:alert('暂未开放');"><button type="submit" class="btn btn-primary">确认添加</button></a>
+            </div>
+        </div>
+    </form>
+</div>
+<include file="User/footer" title="web_index_register_title"/>
+<php>
+    if(I('submit')){
+</php>
+<script>
+    $._messengerDefaults = {
+        extraClasses: 'messenger-fixed messenger-theme-future messenger-on-bottom messenger-on-right'
+    }
+    $.globalMessenger().post('信息提交成功,刷新后显示！');
+</script>
+<php>
+    }
+</php>

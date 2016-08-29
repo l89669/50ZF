@@ -1,0 +1,91 @@
+<include file="Public/header" title="web_index_main_title"/>
+<include file="User/top" main='active'/>
+<include file="User/left" main='active'/>
+<div class="col-xs-12 col-sm-9">
+    <!--欢迎-->
+    <div style="font-size: 40px;">首页</div>
+    <div class="jumbotron">
+        <h1>欢迎回来!</h1>
+        <p>享受轻松的支付系统吧! 欢迎服主申请合作! 免费!</p>
+        <p>
+            <a href="{:U('server/applyserver')}" class="btn btn-primary btn-large">服主加入</a>
+            <a href="{:C('url_bbs')}" class="btn btn-default" target="_blank">论坛交流</a>
+            <a href="" class="btn btn-default" target="_blank">帮助</a>
+        </p>
+    </div>
+    <!--余额操作-->
+    <div>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <strong>[{$user.id}]{$user.username}</strong>,当前结算模式: <strong>T+1</strong> ,每天的利润将会在当天0:00结算. 上次结算日期: {:date("Y-m-d 0:00")}
+            </div>
+            <div class="panel-body">
+                <div>
+                    <p>当前余额: <span class="label label-success">{$user.money}</span></p>
+                </div>
+                <div>
+                    <p>已结算利润: <span class="label label-primary">{$user.gain}</span></p>
+                </div>
+                <div>
+                    <p>未结算利润:  <span class="label label-primary">{$user.gain_last}</span></p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <if condition="($user.gain gt 0)"> 
+        <div>
+            <div class="alert alert-warning alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <h4>当前有利润未转入余额</h4>
+                <p>当前有利润未转入余额,是否需要将利润转入余额?</p>
+                <p>
+                    <a href="{:U('user/gain2money')}" class="btn btn-success btn-sm">立即将利润转入余额</a>
+                </p>
+            </div>
+        </div>
+    </if>
+    <!--最近订单-->
+    <div>
+        <h2>
+            近期资金变动
+        </h2>
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <th style="width: 20%">记录时间</th>
+                    <th style="width: 10%">金额变化</th>
+                    <th style="width: 35%">说明</th>
+                    <th>玩家</th>
+                    <th>服务器</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!--循环输出-->
+            <volist name="order" id="vo" key="k" >
+                <tr>
+                    <td>{:date('Y-m-d H:i:s',$vo[time]);}</td>
+                    <td>
+                <if condition="($vo.money gt 0)"> 
+                    <span class='badge progress-bar-success'> {$vo.money} </span>
+                    <elseif condition="$vo.money lt 0"/>
+                    <span class='badge progress-bar-danger'> {$vo.money} </span>
+                    <else />
+                    <span class='badge progress-bar-default'> {$vo.money} </span>
+                </if>
+                </td>
+                <td>{$vo.info}</td>
+                <td>{$vo.player}</td>
+                <td>{$vo.server}</td>
+                </tr>
+            </volist>              
+            </tbody>
+        </table>
+        <ul class="pager">
+            <li class="next">
+                <a href="{:U('user/record')}">查看更多 →</a>
+            </li>
+        </ul>
+    </div>
+</div>
+<include file="User/footer" title="web_index_register_title"/>

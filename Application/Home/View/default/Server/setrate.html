@@ -1,0 +1,46 @@
+
+<include file="Public/header" title="web_index_setrate_title"/>
+<include file="User/top" servers='active'/>
+<include file="User/left" servers='active'/>
+<div class="col-xs-12 col-sm-9">
+    <div style="font-size: 40px;">服务器充值折算设置</div>
+    <form method="post" id="ApplyServer" class="form-horizontal" action="{:U('doserver/setrate')}">
+        <input type="hidden" name="id" value="{:I('id')}">
+        <fieldset>
+            <legend>这里可以控制您服务器内玩家各充值渠道的比例，例如QQ卡设置为80%，则玩家充值100元的QQ卡只得80元。第一项为您可以获得的比率，第二项为玩家(每充值一元)可以获得的点券。
+                <br>若设置为0，则为关闭该卡密提交渠道！
+            </legend>
+            <volist name="payway" id="vo" key="k" ><!--循环输出-->
+                <div class="form-group">
+                    <label for="{$vo.id}" class="col-sm-2 control-label">{$vo.name}</label>
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                            <span class="input-group-addon">服主可得</span>
+                            <input type="text" class="form-control" value="{$vo.divide}" disabled="">
+                            <span class="input-group-addon">% (人民币)</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="input-group">
+                            <span class="input-group-addon">玩家可得</span>
+                            <input type="number" class="form-control" value="{$vo.rate}" id="{$vo.id}" name="{$vo.way}_{$vo.type}" onblur="justnum($(this))">
+                            <span class="input-group-addon">点券</span>
+                        </div>
+                    </div>
+                    <span class="help-block col-sm-2"><img src="/Public/img/payway/{$vo.pic}" height="25"></span>
+                </div>
+            </volist>
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <button type="submit" class="btn btn-primary">修改设置</button>
+                    <button class="btn btn-default" type="reset">重新填写</button>
+                    <button onclick="javascript:window.location.href='{:U('server/servers')}';" class="btn btn-default" type="button">返回</button>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+
+
+
+</div>

@@ -1,0 +1,117 @@
+<include file="Public/header" title="web_index_login_title"/>
+<body>
+    <div class="container jz">
+        <form method="post" action="{:U('user/login')}" autocomplete="off">
+            <div style="width: 462px;text-align: center;"><img src="/Public/img/logo.png">
+                <br><span style="color: #FF66CC">系统已经公测,注册无需邀请码！</span>
+                <br><span style="color: #000000"><b>点卡/网银/第三方支付</b>支持，超低手续费！ </span>
+                <br><span style="color: #6600CC"><b>平台每天不限提现次数，感谢各位服主的支持！</b></span>
+                <br>插件接口无缝衔接,体验云端生活~
+            </div>
+            <div class="loginBox container-fluid row" style='margin-left: 25px;'>
+                <section class="col-xs-7 left" style="margin-left: -15px;width: 235px;">
+                    <h2>用户登陆</h2>
+                    <div style='margin-top: -10px;'>
+                        <p><input class='form-control showTip' type="text" name="username" placeholder="用户名" data-toggle="tooltip" data-placement="right" data-original-title="输入你注册时用的用户名" style='width: 205px;' value="{:I('session.uc_username')}"/></p>
+                        <p><input class='form-control showTip' type="password" name="password" placeholder="密码" data-toggle="tooltip" data-placement="right" data-original-title="密码你懂的!" style='width: 205px;'/></p>
+                        <section class="container-fluid">
+                            <section class="col-xs-8 lh30" style="vertical-align: middle;font-size:14px;color:#999;line-height: 30px;"><!--label><input style="margin: 0" type="checkbox" name="rememberme"/> 记住我吧</label--> <a href="{:U('?do=forgetpwd')}" style="color: #faa732;">忘记密码?</a>
+                            </section>
+                            <section class="col-xs-1"><input type="submit" value=" 登陆 " class="btn btn-success"></section>
+                        </section>
+                    </div>
+                </section>
+                <section class="col-xs-5 right" style="padding-left: 5;padding-right: 0;width: 150px;">
+                    <h2>这是什么？</h2>
+                    <section>
+                        <div style='margin-top: -10px;'>
+                            <p><b>服主</b> 可以用它 <b>全自动</b> 的处理玩家捐助(各种卡+支付宝)，支持任何服务器！<b>免手续费</b> 提现！<p><b>服务器</b> 内即可直接充值并购买VIP或道具！ 无需苦等服主！</p>
+                            <p><a href="{:C('url_register')}"><input class='form-control btn btn-default' type="button" value=" 马上加入"  class="btn"></a></p>
+                        </div>
+                    </section>
+                </section>
+            </div>
+            <!-- /loginBox -->
+        </form>
+        <div style="width: 462px;text-align: center; color: #FFCCFF;" class="copyright">
+            <a href="#" style="color: #FFCCFF" target="_blank">Powered by DDMCloud © 2013-2016</a>
+            <br>
+            工信部备案编号：<a href="http://www.miibeian.gov.cn/" target="_blank" rel="nofollow" style="color: #FFCCFF">	沪ICP备16010834号</a>
+            <div style="display: none;"><script src="//s4.cnzz.com/stat.php?id=1254246515&web_id=1254246515" language="JavaScript"></script></div>
+        </div>
+    </div>
+    <!-- /container -->
+</body>
+</html>
+
+<style>
+    .copyright{
+        opacity:0.5;
+        filter:alpha(opacity=50); /* 针对 IE8 以及更早的版本 */
+    }
+    .copyright:hover{
+        opacity:1.0;
+        filter:alpha(opacity=100); /* 针对 IE8 以及更早的版本 */
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background: #000000 url(/Public/img/background.jpg) no-repeat center 0;
+    }
+
+    .jz {
+        position: absolute;
+        left: 50%;
+        top: 40%;
+        margin-top: -200px;
+        margin-left: -231px;
+    }
+
+    .loginBox {
+        margin-top: 5px;
+        width: 430px;
+        padding: 0 20px;
+        border: 1px solid #fff;
+        color: #000;
+        border-radius: 8px;
+        background: white;
+        box-shadow: 0 0 15px rgb(255, 247, 0);
+        background: -moz-linear-gradient(top, #fff, #efefef 8%);
+        background: -webkit-gradient(linear, 0 0, 0 100%, from(#f6f6f6), to(#f4f4f4));
+        font: 11px/1.5em 'Microsoft YaHei';
+        height: 260px;
+    }
+
+
+    .loginBox h2 {
+        height: 45px;
+        font-size: 20px;
+        font-weight: normal;
+    }
+
+    .loginBox .left {
+        border-right: 1px solid #ccc;
+        height: 100%;
+        padding-right: 20px;
+    }
+    .control-label {
+        float: left;
+        width: 60px;
+        padding-top: 5px;
+        text-align: right;
+    }
+
+    .controls {
+        margin-left: 70px;
+    }
+
+</style>
+<script>
+    $(function () {
+        $('.showTip').tooltip();
+    })
+</script>

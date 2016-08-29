@@ -1,0 +1,42 @@
+<include file="Public/header" title="web_index_applycash_title"/>
+<include file="User/top" applycash='active'/>
+<include file="User/left" applycash='active'/>
+<div class="col-xs-12 col-sm-9">
+    <div style="font-size: 40px;">申请提现</div>
+
+    <script type="text/javascript" src="/Public/js/bootstrapValidator.js"></script>
+    <form method="post" id="ApplyCash" class="form-horizontal bv-form" action="{:U('douser/applycash')}" novalidate="novalidate" autocomplete="off">
+        <fieldset>
+            <legend>满50即可提现，提现后请耐心等待，或者联系q493537537加急（不收加急费）<br>如需盈利转入余额,请进入首页操作.</legend>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">我的余额</label>
+                <div class="col-sm-6">
+                    <input id="cash" type="text" class="form-control" value="<php>echo (D('user')->loadUser(session('uc_username'))['money']);</php>" disabled="">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">提现账户</label>
+                <div class="col-sm-6">
+                    <select class="form-control " name='moneyaccount'>
+                        <volist name="moneyaccount" id="vo" key="k" ><!--循环输出-->
+                            <option value='{$vo.id}'>{$vo.realname}[{$vo.type}-{$vo.account}]</option>
+                        </volist>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group has-feedback">
+                <label for="applycash" class="col-sm-2 control-label">提现金额</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="applycash" placeholder="输入需要提现的金额" name="money" data-bv-field="applycash"><i class="form-control-feedback" data-bv-icon-for="applycash" style="display: none;"></i>
+                    <small class="help-block" data-bv-validator="notEmpty" data-bv-for="applycash" data-bv-result="NOT_VALIDATED" style="display: none;">提现金额必须填写!</small><small class="help-block" data-bv-validator="regexp" data-bv-for="applycash" data-bv-result="NOT_VALIDATED" style="display: none;">提现金额只能为数字哦!</small><small class="help-block" data-bv-validator="between" data-bv-for="applycash" data-bv-result="NOT_VALIDATED" style="display: none;">提现金额必须在%s以上，您的可提现余额为%s元!!</small></div>
+                <span class="help-block col-sm-4" id="dz">手续费：0%</span>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary btn-lg" id="sss">申请提现</button>
+                    <button class="btn btn-default btn-lg" type="reset">重新填写</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

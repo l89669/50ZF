@@ -1,0 +1,39 @@
+<include file="Public/header" title="web_index_recordinfo_title"/>
+<include file="User/top" record='active'/>
+<include file="User/left" record='active'/>
+<div class="col-xs-12 col-sm-12 col-md-9">
+    <legend>
+        * 以下是您的订单信息，如有问题，请仔细核对。<br>
+    </legend>
+    <dl class="dl-horizontal">
+        <dt>订单号</dt>
+        <dd>{$order.order}</dd>
+        <dt>下单时间</dt>
+        <dd>{:date('Y-m-d H:i:s',$order['time']);}</dd>
+        <dt>充值金额</dt>
+        <dd>{$order.paymoney}元</dd>
+        <dt>服主收益</dt>
+        <dd>{$order.money}元</dd>
+        <dt>支付方式</dt>
+        <dd>{$paydata.payname}</dd>
+        <dt>订单状态</dt>
+        <dd>
+        <if condition="($order.status eq 0)"> 
+            <span style="color: red; font-weight: bold;">未付款</span>
+            <elseif condition="$order.status eq 1"/>
+            <span style="color: green; font-weight: bold;">交易完成</span>
+            <elseif condition="$order.status eq 2"/>
+            <span style="color: blue; font-weight: bold;">处理中</span>
+            <else />
+            未知
+        </if>
+        </dd>
+        <dt>充值服务器</dt>
+        <dd>{$server.name}</dd>
+        <dt>充值账号</dt>
+        <dd>{$order.player}</dd>
+        <dt>支付订单号</dt>
+        <dd><b>{$paydata.ddmorder.order}</b></dd>
+    </dl>
+    <hr>
+</div>

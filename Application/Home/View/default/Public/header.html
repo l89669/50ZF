@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <title>{:L('[title]')} - {:L('web_title')}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="Keywords" content="{:L('web_keywords')}" />
+    </head>
+    <script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+    <link href="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+    <script src="//cdn.bootcss.com/nprogress/0.2.0/nprogress.min.js"></script>
+    <!---->
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/Public/css/index_index.css" type="text/css" />
+    <link href="//cdn.bootcss.com/messenger/1.5.0/css/messenger.min.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+    <!---->
+    <script src="//cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="//cdn.bootcss.com/messenger/1.5.0/js/messenger.min.js"></script>
+    <link href="//cdn.bootcss.com/messenger/1.5.0/css/messenger-theme-future.min.css" rel="stylesheet">
+    <!---->
+</head>
+<script>
+    $(document).ready(function () {
+        NProgress.start();
+    })
+    window.onload = function () {
+        NProgress.done();
+    }
+</script>

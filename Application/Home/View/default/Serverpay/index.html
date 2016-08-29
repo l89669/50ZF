@@ -1,0 +1,172 @@
+
+<include file="Public/header" title=" "/>
+<include file="Serverpay/top" title="web_index_serverpay_title"/>
+<script>
+    var rate = {$rate};
+
+    function clearNoNum(obj)
+    {
+        //先把非数字的都替换掉，除了数字和.
+        obj.value = obj.value.replace(/[^\d.]/g, "");
+        //必须保证第一个为数字而不是.
+        obj.value = obj.value.replace(/^\./g, "");
+        //保证只有出现一个.而没有多个.
+        obj.value = obj.value.replace(/\.{2,}/g, ".");
+        //保证.只出现一次，而不能出现两次以上
+        obj.value = obj.value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
+        //两位小数
+        obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/, '$1$2.$3'); //只能输入两个小数
+    }
+</script>
+<div class="col-xs-12 col-sm-12 col-md-9">
+    <form method="GET" id="edit-profile" class="form-horizontal" action="{:U('Doserverpay/create')}">
+        <fieldset>
+            <legend> * 本系统目前已开放多种充值渠道，具体充值比率请点击下方充值渠道查看！</legend>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="sname">服务器名</label>
+
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" value="{$server.name}" disabled="" id="sname">
+                    <input type="hidden" class="form-control" name="id" value="{$server.id}">
+                </div>
+                <span class="help-block col-sm-4">您准备充值的服务器名</span>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="playername">充值玩家名</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="playername" placeholder="输入你在该服务器中的玩家名" name="playername" value="" required="required" >
+                </div>
+                <span class="help-block col-sm-4">请认真检查玩家名</span>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="money">充值金额</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="money" placeholder="请输入充值金额" name="money" value="" required="required" onkeyup="clearNoNum(this)">
+                </div>
+                <span class="help-block col-sm-4">如果是卡类充值,请输入面值</span>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label">充值渠道</label>
+                <div class="col-sm-10">
+                    <style>
+                        ul {
+                            list-style: none;
+                            padding-left: 0px;
+                        }
+                        .paylist li {
+                            font-weight: bold;
+                            width: 200px;
+                            float: left;
+                            border: 1px solid #fff;
+                            text-align: center;
+                            padding: 8px 0;
+                        }
+                        .paylist #card li:hover {
+                            border: 1px solid #1eb3c6;
+                            border-radius: 4px;
+                            transition: all 0.3s linear;
+                            -moz-transition: all 0.3s linear;
+                            -webkit-transition: all 0.3s linear;
+                        }
+                        .cursor {
+                            cursor: pointer;
+                        }
+                        .paylist .sl {
+                            border: 1px solid #006baa;
+                            border-radius: 4px;
+                            transition: all 0.3s linear;
+                            -moz-transition: all 0.3s linear;
+                            -webkit-transition: all 0.3s linear;
+                        }
+                    </style>
+                    <div class="paylist" style="">
+                        <div id="cards" style="display:block">
+                            <ul style="margin-bottom: 0px;">
+                                <!--循环输出-->
+                                <div>
+                                    <ul class="nav nav-pills" role="tablist">
+                                        <li role="presentation" class="active"><a href="#otherp" aria-controls="otherp" role="tab" data-toggle="tab">第三方平台</a></li>
+                                        <li role="presentation" class=""><a href="#cardp" aria-controls="cardp" role="tab" data-toggle="tab">充值卡/点卡</a></li>
+                                        <li role="presentation" class=""><a href="#bankp" aria-controls="bankp" role="tab" data-toggle="tab">网银</a></li>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane active" id="otherp">
+                                            <volist name="payway" id="vo" key="k" >
+                                                <if condition="$vo.way neq card && $vo.way neq bank">
+                                                    <label for="{$k}" class='col-xs-12 col-sm-12 col-md-4' id="card">
+                                                        <li class="cursor">
+                                                            <div style="float:left">
+                                                                <input type="radio" name="payway" value="{$vo.gateway}_{$vo.way}_{$vo.type}" id="{$k}" onclick="javascript:alert('★★★★★★★★★★★\n【{$vo.name}】充值后点券立即到账，方便快捷！\n该服务器{$vo.name}充值 1元 可得 ' + rate['{$vo.way}_{$vo.type}'] + '点券。\n★★★★★★★★★★★');">
+                                                                <img src="/Public/img/payway/{$vo.pic}" align="absmiddle" alt="{$vo.name}" height="40" width="100" >&nbsp;&nbsp;{$vo.name}
+                                                            </div>
+                                                        </li>
+                                                    </label>
+                                                </if>
+                                            </volist>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane" id="cardp">
+                                            <volist name="payway" id="vo" key="k" >
+                                                <if condition="$vo.way eq card">
+                                                    <label for="{$k}" class='col-xs-12 col-sm-12 col-md-4' id="card">
+                                                        <li class="cursor">
+                                                            <div style="float:left">
+                                                                <input type="radio" name="payway" value="{$vo.gateway}_{$vo.way}_{$vo.type}" id="{$k}" onclick="javascript:alert('★★★★★★★★★★★\n【{$vo.name}】充值后点券立即到账，方便快捷！\n该服务器{$vo.name}充值 1元 可得 ' + rate['{$vo.way}_{$vo.type}'] + '点券。\n★★★★★★★★★★★');">
+                                                                <img src="/Public/img/payway/{$vo.pic}" align="absmiddle" alt="{$vo.name}" height="40" width="100" >&nbsp;&nbsp;{$vo.name}
+                                                            </div>
+                                                        </li>
+                                                    </label>
+                                                </if>
+                                            </volist>
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane" id="bankp">
+                                            <volist name="payway" id="vo" key="k" >
+                                                <if condition="$vo.way eq bank">
+                                                    <label for="{$k}" class='col-xs-12 col-sm-12 col-md-4' id="card">
+                                                        <li class="cursor">
+                                                            <div style="float:left">
+                                                                <input type="radio" name="payway" value="{$vo.gateway}_{$vo.way}_{$vo.type}" id="{$k}" onclick="javascript:alert('★★★★★★★★★★★\n【{$vo.name}】充值后点券立即到账，方便快捷！\n该服务器{$vo.name}充值 1元 可得 ' + rate['{$vo.way}_{$vo.type}'] + '点券。\n★★★★★★★★★★★');">
+                                                                <img src="/Public/img/payway/{$vo.pic}" align="absmiddle" alt="{$vo.name}" height="40" width="100" >&nbsp;&nbsp;{$vo.name}
+                                                            </div>
+                                                        </li>
+                                                    </label>
+                                                </if>
+                                            </volist>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ul>
+                            <div style="clear: both">
+                            </div>
+                            <div>
+                                <strong>提示：</strong>请根据你的实际情况选择最佳的方式进行购买支付! <strong>祝您游戏愉快</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary" id="submit">提交</button>
+                    <button class="btn btn-default" type="reset">重新填写</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+<div class="col-xs-12 col-sm-12 col-md-3 ">
+    <div class="well">
+        <p>服务器名：{$server.name}</p>
+        <p>服务器地址：{$server.ip}</p>
+        <p>服务器简介：
+        </p>
+        <pre>{$server.info}</pre>
+        <p>
+        </p>
+    </div>
+</div>
+</div>
+</div>
+<script>
+
+</script>
+</body>

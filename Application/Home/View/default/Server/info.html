@@ -1,0 +1,70 @@
+<include file="Public/header" title="web_index_serverinfo_title"/>
+<include file="User/top" servers='active'/>
+<include file="User/left" servers='active'/>
+<div class="col-xs-12 col-sm-9">
+    <div style="font-size: 40px;">查看服务器资料</div>
+    <script type="text/javascript" src="/Public/js/bootstrapValidator.js"></script>
+    <form method="post" id="ApplyServer" class="form-horizontal bv-form" action="/Main/doApplyServer" novalidate="novalidate"><button type="submit" class="bv-hidden-submit" style="display: none; width: 0px; height: 0px;"></button>
+        <fieldset>
+            <legend>以下为您查询的服务器信息，部分信息只有服主可见。</legend>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">SID</label>
+                <div class="col-sm-5 help-block">{$server.id}</div>
+                <span class="help-block col-sm-4">服务器的编号</span>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">服务器名称</label>
+                <div class="col-sm-5 help-block">{$server.name}</div>
+                <span class="help-block col-sm-4">服务器的名称或简称~</span>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">服务器IP</label>
+                <div class="col-sm-5 help-block">{$server.ip}</div>
+                <span class="help-block col-sm-4">服务器的连接地址</span>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">服务器logo网址</label>
+                <div class="col-sm-5 help-block">{$server.logourl}</div>
+                <span class="help-block col-sm-4">服务器的logo地址</span>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">服务器官网</label>
+                <div class="col-sm-5 help-block">{$server.wwwurl}</div>
+                <span class="help-block col-sm-4">服务器的官网地址</span>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">服务器VIP介绍</label>
+                <div class="col-sm-5 help-block">{$server.url}</div>
+                <span class="help-block col-sm-4">服务器的VIP介绍地址</span>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">充值地址</label>
+                <div class="col-sm-5 help-block">
+                    <a href="{:C('url')}spay/{$server.id}" target="_blank">{:C('url')}spay/{$server.id}</a>
+                </div>
+                <span class="help-block col-sm-4"></span>
+            </div>
+            <legend>以下内容仅服主可见</legend>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">历史总收入</label>
+                <div class="col-sm-5 help-block"> {$server.money} 元 <a href="{:U('user/applycash')}">【去提现】</a>
+                </div>
+                <span class="help-block col-sm-4">统计加入平台以来服务器捐助总额</span>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label">服务器KEY</label>
+                <div class="col-sm-5 help-block"> {$server.key} </div>
+                <span class="help-block col-sm-4">【请勿泄露，以免产生不必要的损失】</span>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                    <div>
+                        <button onclick="javascript:window.location.href='<php>echo U('server/infoedit?id=' . $server['id'])</php>';" class="btn btn-primary col-sm-2" type="button">编辑</button>
+                        <div class='col-sm-2'></div>
+                        <button onclick="javascript:history.go(-1);" class="btn btn-default col-sm-1" type="button">返回</button>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

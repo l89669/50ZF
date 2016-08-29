@@ -1,0 +1,50 @@
+<include file="Public/header" title="web_index_applyserver_title"/>
+<include file="User/top" applyserver='active'/>
+<include file="User/left" applyserver='active'/>
+<div class="col-xs-12 col-sm-9">
+    <div style="font-size: 40px;">自助添加您的服务器</div>
+    <form method="post" id="ApplyServer" class="form-horizontal bv-form" action="{:U('doserver/applyserver')}">
+        <fieldset>
+            注意，此处添加服务器不是开服，这里指的是为您的服务器接入支付系统！如需购买服务器请自行寻找服务器出租商。<br>
+            您的服务器将获得一个独立的充值页面！目前已支持多种支付渠道。
+            <hr>
+            <div class="form-group has-feedback">
+                <label for="sname" class="col-sm-2 control-label">服务器名称</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="sname" placeholder="XXXXX服务器" name="sname" data-bv-field="sname"><i class="form-control-feedback" data-bv-icon-for="sname" style="display: none;"></i>
+                    <small class="help-block" data-bv-validator="notEmpty" data-bv-for="sname" data-bv-result="NOT_VALIDATED" style="display: none;">服务器名必须填写噢!</small></div>
+                <span class="help-block col-sm-4">您的服务器名称</span>
+
+            </div>
+            <div class="form-group has-feedback">
+                <label for="shost" class="col-sm-2 control-label">服务器IP</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="shost" placeholder="IP或域名皆可,推荐用域名!" name="shost" data-bv-field="shost"><i class="form-control-feedback" data-bv-icon-for="shost" style="display: none;"></i>
+                    <small class="help-block" data-bv-validator="notEmpty" data-bv-for="shost" data-bv-result="NOT_VALIDATED" style="display: none;">服务器连接地址或IP必须填写噢!</small><small class="help-block" data-bv-validator="regexp" data-bv-for="shost" data-bv-result="NOT_VALIDATED" style="display: none;">服务器连接地址格式有误!</small><small class="help-block" data-bv-validator="remote" data-bv-for="shost" data-bv-result="NOT_VALIDATED" style="display: none;">该服务器地址已经被其他服务器设置了!</small></div>
+                <span class="help-block col-sm-4">您服务器的连接地址</span>
+            </div>
+
+            <div class="form-group has-feedback">
+                <label class="col-sm-2 control-label" for="stext">服务器简介</label>
+                <div class="col-sm-6">
+                    <textarea class="form-control " id="stext" rows="4" placeholder="一段简洁而真诚的服务器介绍语可以吸引更多玩家哦!" name="stext" data-bv-field="stext"></textarea><i class="form-control-feedback" data-bv-icon-for="stext" style="display: none;"></i>
+                    <small class="help-block" data-bv-validator="notEmpty" data-bv-for="stext" data-bv-result="NOT_VALIDATED" style="display: none;">服务器简介必须填写!</small><small class="help-block" data-bv-validator="stringLength" data-bv-for="stext" data-bv-result="NOT_VALIDATED" style="display: none;">请输入一段5到400个字的服务器简介!!</small></div>
+            </div>
+            <!--
+                        <div class="form-group has-feedback">
+                            <label for="sdomain" class="col-sm-2 control-label">自有域名</label>
+                            <div class="col-sm-6">
+                                <input type="text" class="form-control" id="sdomain" placeholder="例如:pay.minecraft.net 若不懂请不要填" name="sdomain" data-bv-field="sdomain"><i class="form-control-feedback" data-bv-icon-for="sdomain" style="display: none;"></i>
+                                <small class="help-block" data-bv-validator="remote" data-bv-for="sdomain" data-bv-result="NOT_VALIDATED" style="display: none;">该域名已经被其他服务器设置了!</small></div>
+                            <span class="help-block col-sm-4">可顶级可二级,请自行备案! 可不填!</span>
+                        </div>
+            -->
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary">马上开通</button> <button class="btn btn-default" type="reset">重新填写</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+
+</div>

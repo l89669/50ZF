@@ -1,0 +1,63 @@
+<include file="Public/header" title="web_index_manual_title"/>
+<include file="User/top" manual='active'/>
+<include file="User/left" manual='active'/>
+<div class="col-xs-12 col-sm-9">
+    <div style="font-size: 40px;">手工充值/扣款</div>
+
+    <form method="post" id="ApplyServer" class="form-horizontal bv-form" action="{:U('doserver/manual')}" novalidate="novalidate">
+        <fieldset>
+            <legend>手工充值与扣款，该操作不会影响您的平台余额。</legend>
+
+            <div class="form-group has-feedback">
+                <label for="id" class="col-sm-2 control-label">服务器ID</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="id" placeholder="您的服务器ID" name="id" value="{$Think.get.id}" data-bv-field="id"><i class="form-control-feedback" data-bv-icon-for="sid" style="display: none;"></i>
+                    <small class="help-block" data-bv-validator="notEmpty" data-bv-for="sid" data-bv-result="NOT_VALIDATED" style="display: none;">sid必须填写!</small><small class="help-block" data-bv-validator="regexp" data-bv-for="sid" data-bv-result="NOT_VALIDATED" style="display: none;">sid只能为数字哦!</small></div>
+                <span class="help-block col-sm-4">需要操作的服务器SID</span>
+            </div>
+
+            <div class="form-group has-feedback">
+                <label for="player" class="col-sm-2 control-label">玩家名</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="player" placeholder="需要操作的玩家名" name="player" value="{$Think.get.player}" data-bv-field="player"><i class="form-control-feedback" data-bv-icon-for="wname" style="display: none;"></i>
+                    <small class="help-block" data-bv-validator="notEmpty" data-bv-for="wname" data-bv-result="NOT_VALIDATED" style="display: none;">玩家名必须填写噢!</small></div>
+                <span class="help-block col-sm-4">需要操作的玩家名</span>
+            </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">操作类型</label>
+                <div class="col-sm-10">
+                    <div class="btn-group" data-toggle="buttons" style=" width: 100%;">
+                        <label class="btn btn-default active">
+                            <input type="radio" name="type" value="1" checked="">加款(充值)
+                        </label>
+                        <label class="btn btn-default  ">
+                            <input type="radio" name="type" value="2">扣款(消费)
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group has-feedback">
+                <label for="credit" class="col-sm-2 control-label">操作点券</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="credit" placeholder="需要操作的点券" name="credit" data-bv-field="credit"><i class="form-control-feedback" data-bv-icon-for="money" style="display: none;"></i>
+                    <small class="help-block" data-bv-validator="notEmpty" data-bv-for="credit" data-bv-result="NOT_VALIDATED" style="display: none;">操作金额必须填写!</small><small class="help-block" data-bv-validator="regexp" data-bv-for="money" data-bv-result="NOT_VALIDATED" style="display: none;">操作金额只能为正整数哦!</small></div>
+                <span class="help-block col-sm-4">需要操作的点券，请输入正整数</span>
+            </div>
+
+            <div class="form-group has-feedback">
+                <label for="reason" class="col-sm-2 control-label">操作说明</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="reason" placeholder="操作备注、理由" name="reason" data-bv-field="reason"><i class="form-control-feedback" data-bv-icon-for="text" style="display: none;"></i>
+                    <small class="help-block" data-bv-validator="notEmpty" data-bv-for="text" data-bv-result="NOT_VALIDATED" style="display: none;">请填写操作原因或备注!</small><small class="help-block" data-bv-validator="stringLength" data-bv-for="text" data-bv-result="NOT_VALIDATED" style="display: none;">操作原因请勿超过30字符!</small></div>
+                <span class="help-block col-sm-4">操作备注、理由（玩家可见）</span>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary">马上执行</button> <button class="btn btn-default" type="reset">重新填写</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

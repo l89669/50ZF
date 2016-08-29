@@ -1,0 +1,66 @@
+<include file="Public/header" title="web_index_record_title"/>
+<include file="User/top" record='active'/>
+<include file="User/left" record='active'/>
+<div class="col-xs-12 col-sm-9">
+    <div style="font-size: 40px;">资金变动</div>
+
+    <table class="table table-bordered table-striped table-hover" style="margin-bottom: 0px;">
+        <thead>
+            <tr>
+                <th style="width: 5%">#</th>
+                <th style="width: 15%">时间</th>
+                <th style="width: 5%">金额</th>
+                <th style="width: 20%">说明</th>
+                <th style="width: 7%">玩家</th>
+                <th style="width: 5%">服务器</th>
+                <th style="width: 7%">状态</th>
+                <th style="width: 5%">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        <volist name="record" id="vo" key="k" ><!--循环输出-->
+            <tr height="25">
+                <th scope="row">{$vo.id}</th>
+                <td>{:date('Y-m-d H:i:s',$vo[time]);}</td>
+                <td>
+            <if condition="($vo.money gt 0)"> 
+                <span class='badge progress-bar-success'> +{$vo.money} </span>
+                <elseif condition="$vo.money lt 0"/>
+                <span class='badge progress-bar-danger'> {$vo.money} </span>
+                <else />
+                <span class='badge progress-bar-default'> {$vo.money} </span>
+            </if>
+            </td>
+            <td>{$vo.info}</td>
+            <td>{$vo.player}</td>
+            <td>
+            <if condition="($vo.server eq system)"> 
+                系统
+                <else/>
+                {$vo.server}
+            </if>
+            </td>
+            <td>
+            <if condition="($vo.status eq 0)"> 
+                <span style="color: red; font-weight: bold;">未付款</span>
+                <elseif condition="$vo.status eq 1"/>
+                <span style="color: green; font-weight: bold;">交易完成</span>
+                <elseif condition="$vo.status eq 2"/>
+                <span style="color: blue; font-weight: bold;">处理中</span>
+                <else />
+                未知
+            </if>
+            </td>
+            <td>
+            <if condition="$vo.paymoney gt 0 ">
+                <a href="{:U('user/recordinfo?order=' . $vo['order'])}">详情</a>
+            </if>
+            </td>
+            </tr>
+        </volist>  
+        </tbody>
+    </table>
+    <nav>
+        {$page}
+    </nav>
+</div>

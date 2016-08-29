@@ -1,0 +1,66 @@
+<include file="Public/header" title="web_index_servers_title"/>
+<include file="User/top" servers='active'/>
+<include file="User/left" servers='active'/>
+<php>$mS=D('servers');</php>
+<div class="col-xs-12 col-sm-9">
+    <div style="font-size: 40px;">我旗下的服务器</div>
+    <table class="table table-bordered table-striped table-hover" style="margin-bottom: 0px;">
+        <thead>
+            <tr>
+                <th>编号(ID)</th>
+                <th>服务器名</th>
+                <th style="width: 15%;">密钥(KEY)</th>
+                <th>连接地址</th>
+                <th>今日收入</th>
+                <th>月内收入</th>
+                <th>历史收入</th>
+                <th>操作</th>
+            </tr>
+        </thead>
+        <tbody>
+        <volist name="servers" id="vo" key="k" ><!--循环输出-->
+            <tr>
+                <th scope="row">{$vo.id}</th>
+                <td><a href="<php>echo U('server/info?id=' . $vo['id']);</php>">{$vo.name}</a></td>
+                <td>
+                    <div class="col-xs-12" style="padding: 0px;" id="showKey">
+                        <div class="col-xs-12" style="padding: 0px;" onclick="deleteReset(this);">
+                            <button class="btn btn-info btn-xs btn-block" onclick="$(this).parent().html('{$vo.key}')">查看密钥</button>
+                        </div>
+                        <!--
+                        <div class="col-xs-4" style="padding: 0px;" id="reset">
+                            <a href='<php>echo U("doserver/randomserverkey?id=" . $vo['id']);</php>'><button class="btn btn-info btn-xs btn-block" id="goreset">重置</button></a>
+                        </div>
+                        -->
+                    </div>
+                </td>
+                <td>{$vo.ip}</td>
+                <td>
+                    <span class="badge progress-bar-success">
+                        <php>echo $mS->countGain($vo['id'],date('Y-m-d'),time());</php>
+                    </span>
+                </td>
+                <td>
+                    <span class="badge progress-bar-success">
+                        <php>echo $mS->countGain($vo['id'],date('Y-m-1'),time());</php>
+                    </span>
+                </td>
+                <td><span class="badge progress-bar-success">{$vo.money}</span></td>
+                <td>
+                    <b><a href="<php>echo U("server/infoedit?id=" . $vo['id']);</php>">设置</a></b>
+                    <b><a href="<php>echo U("server/setrate?id=" . $vo['id']);</php>">费率设置</a></b>
+                    <!--<b><a href="javascript:window.open('/spay/{$vo.id}')">充值页面</a></b>-->
+                    <b><a href="javascript:window.open('<php>echo U("serverpay/index?id=" . $vo['id']);</php>')">充值页面</a></b>
+                </td>
+                <!--<td>查看</td>-->
+            </tr>
+        </volist>
+        </tbody>
+    </table>
+    <script>
+        function deleteReset(child) {
+            var f = child.parentNode;
+            f.removeChild(f.getElementsByTagName('div')[1]);
+        }
+    </script>
+</div>

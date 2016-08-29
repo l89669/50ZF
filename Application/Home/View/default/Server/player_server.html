@@ -1,0 +1,60 @@
+<include file="Public/header" title="web_index_player_title"/>
+<include file="User/top" player='active'/>
+<include file="User/left" player='active'/>
+<div class="col-xs-12 col-sm-9">
+    <div style="font-size: 40px;">服务器玩家</div>
+    <div class="col-sm-12">
+        <form method="get" id="EditProfile" class="form-horizontal" action="{:U('server/player')}">
+            <fieldset>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label" for="1">服务器</label>
+                    <div class="col-sm-3">
+                        <select class="form-control" name="id">
+                            <volist name="servers" id="vo" key="k">
+                                <if condition="($vo.id eq $server[id])"> 
+                                    <option value='{$vo.id}' selected="selected">{$vo.id} [{$vo.name}]</option>
+                                    <else />
+                                    <option value='{$vo.id}'>{$vo.id} [{$vo.name}]</option>
+                                </if>
+                            </volist>
+                        </select>
+                    </div>
+                    <span class="col-sm-1"><button type="submit" class="btn btn-primary">搜索</button>
+                    </span>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    <notempty name="server">
+        <table class="table table-bordered table-striped table-hover" style="margin-bottom: 0px;">
+            <thead>
+                <tr>
+                    <th>服编号</th>
+                    <th>服务器名</th>
+                    <th>玩家名</th>
+                    <th><a href="{:U('?order=credit&id=' . $server['id'])}">点券余额</a></th>
+                    <th><a href="{:U('?order=money&id=' . $server['id'])}">累计充值</a></th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+            <volist name="players" id="vo" key="k" >
+                <tr>
+                    <td>{$vo.server}</td>
+                    <td>{$server.name}</td>
+                    <td>{$vo.player}</td>
+                    <td>
+                        <span class="badge progress-bar-info">{$vo.credit}</span>
+                    </td>
+                    <td>
+                        <span class="badge progress-bar-success">{$vo.money}</span>
+                    </td>
+                    <td>
+                        <a href="{:U("server/manual?id=" . $server['id'] ."&player=" . $vo['player'])}">手工充/扣</a>
+                    </td>
+                </tr>           
+            </volist>  
+            </tbody>
+        </table>
+    </notempty>
+</div>

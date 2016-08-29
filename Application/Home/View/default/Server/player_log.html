@@ -1,0 +1,61 @@
+<include file="Public/header" title="web_index_playerlog_title"/>
+<include file="User/top" playerlog='active'/>
+<include file="User/left" playerlog='active'/>
+<div class="col-xs-12 col-sm-9">
+    <div style="font-size: 40px;">服务器玩家消费记录</div>
+    <form method="get" id="EditProfile" class="form-horizontal" action="{:U('server/playerlog')}">
+        <fieldset>
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="1">服务器</label>
+                <div class="col-sm-3">
+                    <select class="form-control" name="id">
+                        <volist name="servers" id="vo" key="k">
+                            <if condition="($vo.id eq $server[id])"> 
+                                <option value='{$vo.id}' selected="selected">{$vo.id} [{$vo.name}]</option>
+                                <else />
+                                <option value='{$vo.id}'>{$vo.id} [{$vo.name}]</option>
+                            </if>
+                        </volist>
+                    </select>
+                </div>
+                <span class="col-sm-1"><button type="submit" class="btn btn-primary">搜索</button>
+                </span>
+            </div>
+        </fieldset>
+    </form>
+    <notempty name="server">
+        <table class="table table-bordered table-striped table-hover" style="margin-bottom: 0px;">
+            <thead>
+                <tr>
+                    <th style="width: 7%">服号</th>
+                    <th style="width: 10%">编号</th>
+                    <th style="width: 20%">消费时间</th>
+                    <th>游戏名</th>
+                    <th>消费金额</th>
+                    <th>理由</th>
+                </tr>
+            </thead>
+            <tbody>
+            <volist name="logs" id="vo" key="k" >
+                <tr>
+                    <td>{$server.id}</td>
+                    <td>{$vo.id}</td>
+                    <td>{:date('Y-m-d H:i:s',$vo[time]);}</td>
+                    <td>{$vo.player}</td>
+                    <td>
+                <if condition="($vo.credit lt 0)"> 
+                    <span class='badge progress-bar-success'> {$vo.credit} </span>
+                    <else />
+                    <span class='badge progress-bar-default'> +{$vo.credit} </span>
+                </if>
+                </td>
+                <td>{$vo.info}</td>
+                </tr>        
+            </volist>
+            </tbody>
+        </table>
+        <nav>
+            {$page}
+        </nav>
+    </notempty>
+</div>
