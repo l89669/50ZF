@@ -22,3 +22,6 @@
 6. 安装Ucenter(如果安装了Discuz,则自带uc服务器,在论坛目录下的/uc_server/目录)
 7. 在Ucenter创建应用程序,复制配置文件到/api/UcConfig.inc.php
 8. 测试
+
+
+![]()
