@@ -141,7 +141,6 @@ class ApiController extends Controller {
     }
 
     public function s_orders() {
-        die();
         $this->checkParams('id,key');
         $this->checkServer();
         global $apiresult;
