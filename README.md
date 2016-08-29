@@ -14,11 +14,11 @@
 也有提现体系和程序日志.
 
 ##安装方法
-1.安装网页服务器,配置PHP运行环境(支不支持PHP7我没有测试)
-2.安装MYSQL服务
-3.上传网页程序
-4.导入/SQL/mcpay.sql到你的数据库
-5.进入/Application/Home/Conf/config.php配置你的数据库信息
-6.安装Ucenter(如果安装了Discuz,则自带uc服务器,在论坛目录下的/uc_server/目录)
-7.在Ucenter创建应用程序,复制配置文件到/api/UcConfig.inc.php
-8.测试
+1. 安装网页服务器,配置PHP运行环境(支不支持PHP7我没有测试)
+2. 安装MYSQL服务
+3. 上传网页程序
+4. 导入/SQL/mcpay.sql到你的数据库
+5. 进入/Application/Home/Conf/config.php配置你的数据库信息
+6. 安装Ucenter(如果安装了Discuz,则自带uc服务器,在论坛目录下的/uc_server/目录)
+7. 在Ucenter创建应用程序,复制配置文件到/api/UcConfig.inc.php
+8. 测试
